@@ -52,6 +52,116 @@ footer{background:#102d24;color:#dce9df;padding:28px 0}
 footer p{margin:.25rem 0;color:#c5d6c9;font-size:.9rem}
 @media(max-width:760px){.hero-grid,.two,.qrbox{grid-template-columns:1fr}.hero{padding:38px 0}.grid{grid-template-columns:1fr 1fr}.hero img{max-height:280px}#qrcode{width:180px}}
 @media(max-width:480px){.grid{grid-template-columns:1fr}section{padding:42px 0}}
+ 
+/* HOME GARDEN FOOD WEB DESIGN */
+
+.foodweb-section {
+  background: #edf1e9;
+  padding: 75px 5%;
+}
+
+.foodweb-heading {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 40px;
+}
+
+.foodweb-heading h2 {
+  color: #244b3b;
+  font: bold 36px Arial, sans-serif;
+  margin-bottom: 14px;
+}
+
+.foodweb-heading p {
+  color: #68796c;
+  font-size: 16px;
+}
+
+.foodweb-card {
+  max-width: 1000px;
+  margin: 25px auto;
+  background: #fff;
+  border: 1px solid #dce5d8;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(30,60,40,.06);
+}
+
+.foodweb-card h3 {
+  color: #244b3b;
+  font: bold 22px Arial, sans-serif;
+  margin-bottom: 22px;
+}
+
+.foodweb-level {
+  margin: 22px 0;
+}
+
+.foodweb-level h4 {
+  color: #81947b;
+  font: bold 12px Arial, sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.foodweb-items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.foodweb-node {
+  padding: 12px 17px;
+  border-radius: 9px;
+  background: #edf4e9;
+  border: 1px solid #d4e2d0;
+  color: #31543d;
+  font: 14px Arial, sans-serif;
+}
+
+.foodweb-node.consumer {
+  background: #f8f1e4;
+  border-color: #eadbbd;
+  color: #765d35;
+}
+
+.foodweb-node.predator {
+  background: #f0eae7;
+  border-color: #dfd1ca;
+  color: #684c40;
+}
+
+.foodweb-arrow {
+  color: #b69a62;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.foodweb-note {
+  background: #f7f7f1;
+  border-left: 4px solid #b69a62;
+  padding: 17px;
+  margin-top: 22px;
+  color: #59695d;
+  font: 14px/1.7 Arial, sans-serif;
+}
+
+.foodweb-caption {
+  text-align: center;
+  color: #718075;
+  font: 13px Arial, sans-serif;
+  margin-top: 25px;
+}
+
+@media(max-width:600px) {
+  .foodweb-card { padding: 20px; }
+  .foodweb-heading h2 { font-size: 28px; }
+  .foodweb-items { gap: 7px; }
+  .foodweb-node { padding: 9px 11px; }
+}
+
 </style>
 </head>
 <body>
@@ -69,7 +179,7 @@ footer p{margin:.25rem 0;color:#c5d6c9;font-size:.9rem}
  </div>
 </header>
 <nav><div class="wrap navinner">
- <a href="#overview">Overview</a><a href="#components">Components</a><a href="#daynight">Day & night</a><a href="#interactions">Interactions</a><a href="#processes">Ecosystem processes</a><a href="#people">Human influence</a><a href="#services">Services</a><a href="#references">References</a>
+ <a href="#overview">Overview</a><a href="#components">Components</a><a href="#daynight">Day & night</a><a href="#interactions">Interactions</a> <a href="#foodweb">Food Webs</a> <a href="#processes">Ecosystem processes</a><a href="#people">Human influence</a><a href="#services">Services</a><a href="#references">References</a>
 </div></nav>
 <main>
 <section id="overview"><div class="wrap">
@@ -206,5 +316,161 @@ footer p{margin:.25rem 0;color:#c5d6c9;font-size:.9rem}
  }
 })();
 </script>
+ 
+<section class="foodweb-section" id="foodweb">
+
+  <div class="foodweb-heading">
+    <h2>Food Webs of Our Garden</h2>
+    <p>
+      A network of feeding relationships connecting
+      plants, insects, birds and other organisms
+      across our garden's terrestrial and aquatic habitats.
+    </p>
+  </div>
+
+  <!-- DAYTIME FOOD WEB -->
+
+  <div class="foodweb-card">
+
+    <h3>☀️ Daytime Ecosystem</h3>
+
+    <div class="foodweb-level">
+      <h4>01 · Producers</h4>
+      <div class="foodweb-items">
+        <span class="foodweb-node">Mango tree</span>
+        <span class="foodweb-node">Jackfruit tree</span>
+        <span class="foodweb-node">Coconut tree</span>
+        <span class="foodweb-node">Banana plants</span>
+        <span class="foodweb-node">Flowering plants</span>
+        <span class="foodweb-node">Grasses</span>
+      </div>
+    </div>
+
+    <div class="foodweb-level">
+      <h4>02 · Primary consumers</h4>
+      <div class="foodweb-items">
+        <span class="foodweb-node consumer">Butterflies</span>
+        <span class="foodweb-node consumer">Snails</span>
+        <span class="foodweb-node consumer">Plant-feeding insects</span>
+        <span class="foodweb-node consumer">Squirrels</span>
+        <span class="foodweb-node consumer">Fruit-eating birds</span>
+      </div>
+    </div>
+
+    <div class="foodweb-level">
+      <h4>03 · Secondary consumers</h4>
+      <div class="foodweb-items">
+        <span class="foodweb-node predator">Frogs</span>
+        <span class="foodweb-node predator">Insect-eating birds</span>
+        <span class="foodweb-node predator">Insectivorous bats</span>
+      </div>
+    </div>
+
+    <div class="foodweb-note">
+      <strong>Examples of feeding relationships</strong>
+      <p>Flower nectar → Butterflies</p>
+      <p>Plant leaves → Plant-feeding insects → Insect-eating birds</p>
+      <p>Fruits and seeds → Squirrels and fruit-eating birds</p>
+    </div>
+
+  </div>
+
+  <!-- NIGHTTIME FOOD WEB -->
+
+  <div class="foodweb-card">
+
+    <h3>🌙 Nighttime Ecosystem</h3>
+
+    <div class="foodweb-level">
+      <h4>01 · Plant resources</h4>
+      <div class="foodweb-items">
+        <span class="foodweb-node">Leaves</span>
+        <span class="foodweb-node">Grasses</span>
+        <span class="foodweb-node">Fruits</span>
+        <span class="foodweb-node">Leaf litter</span>
+      </div>
+    </div>
+
+    <div class="foodweb-level">
+      <h4>02 · Primary consumers</h4>
+      <div class="foodweb-items">
+        <span class="foodweb-node consumer">Snails</span>
+        <span class="foodweb-node consumer">Plant-feeding insects</span>
+      </div>
+    </div>
+
+    <div class="foodweb-level">
+      <h4>03 · Secondary consumers</h4>
+      <div class="foodweb-items">
+        <span class="foodweb-node predator">Frogs</span>
+        <span class="foodweb-node predator">Insectivorous bats</span>
+      </div>
+    </div>
+
+    <div class="foodweb-level">
+      <h4>04 · Higher-level predators</h4>
+      <div class="foodweb-items">
+        <span class="foodweb-node predator">Owls</span>
+      </div>
+    </div>
+
+    <div class="foodweb-note">
+      <strong>Examples of feeding relationships</strong>
+      <p>Plant material → Snails</p>
+      <p>Nocturnal insects → Frogs</p>
+      <p>Flying insects → Insectivorous bats</p>
+    </div>
+
+  </div>
+
+  <!-- POND FOOD WEB -->
+
+  <div class="foodweb-card">
+
+    <h3>💧 Aquatic Food Web</h3>
+
+    <div class="foodweb-level">
+      <h4>01 · Producers</h4>
+      <div class="foodweb-items">
+        <span class="foodweb-node">Algae</span>
+        <span class="foodweb-node">Aquatic plants</span>
+      </div>
+    </div>
+
+    <div class="foodweb-level">
+      <h4>02 · Primary consumers</h4>
+      <div class="foodweb-items">
+        <span class="foodweb-node consumer">Zooplankton</span>
+        <span class="foodweb-node consumer">Aquatic invertebrates</span>
+      </div>
+    </div>
+
+    <div class="foodweb-level">
+      <h4>03 · Higher consumers</h4>
+      <div class="foodweb-items">
+        <span class="foodweb-node predator">Frogs</span>
+        <span class="foodweb-node predator">Aquatic-feeding birds</span>
+        <span class="foodweb-node consumer">Ducks</span>
+      </div>
+    </div>
+
+    <div class="foodweb-note">
+      <strong>Example aquatic feeding pathway</strong>
+      <p>Algae → Zooplankton → Aquatic-feeding animals</p>
+      <p>
+        Ducks may feed on aquatic plants and invertebrates,
+        depending on their diet.
+      </p>
+    </div>
+
+  </div>
+
+  <p class="foodweb-caption">
+    Arrows indicate the direction of energy transfer:
+    food source → consumer.
+  </p>
+
+</section>
+
 </body>
 </html>
