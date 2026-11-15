@@ -1,794 +1,210 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173d31">
+<meta name="description" content="A university-level ecological guide to a Sri Lankan mixed home garden agroecosystem.">
 <title>One Garden, Two Ecological Worlds</title>
-
-<meta name="description" content="An interactive ecological field guide exploring biodiversity, food webs, and ecological relationships in a mixed home garden agroecosystem.">
-
 <style>
-:root {
-  --green: #244b3b;
-  --dark: #172d25;
-  --sage: #789078;
-  --light: #f4f4eb;
-  --cream: #fbfaf5;
-  --gold: #b69a62;
-  --text: #35443b;
-  --muted: #718075;
-  --line: #dce3d8;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: Georgia, 'Times New Roman', serif;
-  background: var(--cream);
-  color: var(--text);
-  line-height: 1.7;
-}
-
-h1, h2, h3, nav, .eyebrow,
-.tag, .flow, .footer {
-  font-family: Arial, sans-serif;
-}
-
-.wrap {
-  width: min(1120px, 91%);
-  margin: auto;
-}
-
-nav {
-  background: var(--dark);
-  color: white;
-  padding: 16px 0;
-}
-
-.nav-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-
-.brand {
-  font-size: 15px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-.nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 22px;
-}
-
-.nav-links a {
-  color: #e4eadf;
-  text-decoration: none;
-  font-size: 13px;
-}
-
-.nav-links a:hover { color: #d9c18a; }
-
-.hero {
-  background: #e9eee4;
-  padding: 65px 0;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  align-items: center;
-  gap: 40px;
-}
-
-.eyebrow {
-  color: var(--sage);
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-h1 {
-  color: var(--dark);
-  font-size: clamp(36px, 5vw, 59px);
-  line-height: 1.12;
-  margin-bottom: 22px;
-}
-
-.hero p {
-  font-size: 17px;
-  max-width: 480px;
-  color: #53665a;
-}
-
-.pill {
-  display: inline-block;
-  margin-top: 24px;
-  padding: 8px 15px;
-  border: 1px solid #aab9a6;
-  border-radius: 30px;
-  font: 12px Arial, sans-serif;
-  color: var(--green);
-}
-
-.model-image {
-  width: 100%;
-  display: block;
-  border-radius: 12px;
-  border: 7px solid white;
-  box-shadow: 0 12px 35px #243b2d20;
-}
-
-section { padding: 75px 0; }
-
-.section-heading {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 42px;
-}
-
-.section-heading h2 {
-  color: var(--green);
-  font-size: clamp(27px, 4vw, 38px);
-  margin-bottom: 12px;
-}
-
-.section-heading p {
-  color: var(--muted);
-  font-size: 16px;
-}
-
-.intro-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.info-card {
-  background: white;
-  padding: 25px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-}
-
-.info-card h3 {
-  color: var(--green);
-  margin-bottom: 10px;
-  font-size: 18px;
-}
-
-.info-card p {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-#foodweb {
-  background: #edf1e9;
-}
-
-.web-panel {
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 13px;
-  padding: 30px;
-  margin-bottom: 28px;
-  box-shadow: 0 5px 20px #1c39200a;
-}
-
-.panel-top {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 24px;
-}
-
-.panel-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: #e9eee4;
-  font-size: 24px;
-}
-
-.panel-top h3 {
-  color: var(--green);
-  font-size: 21px;
-}
-
-.panel-top p {
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.food-label {
-  font: bold 11px Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1.3px;
-  color: var(--sage);
-  margin-bottom: 9px;
-}
-
-.flow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 9px;
-  margin: 10px 0 23px;
-}
-
-.node {
-  background: #f3f5ef;
-  border: 1px solid #dce5d8;
-  border-radius: 7px;
-  padding: 11px 14px;
-  font-size: 13px;
-  color: var(--green);
-  text-align: center;
-}
-
-.node.consumer {
-  background: #f8f3e9;
-  border-color: #e9ddc2;
-  color: #775e34;
-}
-
-.node.predator {
-  background: #f0ece9;
-  border-color: #ded2c9;
-  color: #674d3f;
-}
-
-.arrow {
-  color: var(--gold);
-  font-size: 23px;
-  font-weight: bold;
-}
-
-.flow-note {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 8px;
-}
-
-.web-explanation {
-  background: #f7f7f1;
-  padding: 17px 20px;
-  border-left: 3px solid var(--gold);
-  font-size: 14px;
-  color: #56645a;
-  margin-top: 15px;
-}
-
-.legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  margin: 30px 0;
-}
-
-.legend span {
-  background: white;
-  border: 1px solid var(--line);
-  padding: 8px 13px;
-  border-radius: 20px;
-  font: 12px Arial, sans-serif;
-}
-
-.note {
-  max-width: 900px;
-  margin: 30px auto 0;
-  font-size: 13px;
-  color: var(--muted);
-  text-align: center;
-}
-
-#ecology { background: var(--cream); }
-
-.eco-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-}
-
-.eco-card {
-  padding: 28px;
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-}
-
-.eco-card h3 {
-  color: var(--green);
-  font-size: 19px;
-  margin-bottom: 12px;
-}
-
-.eco-card ul {
-  padding-left: 20px;
-  font-size: 14px;
-  color: #59695d;
-}
-
-.eco-card li { margin: 7px 0; }
-
-.cycle {
-  background: var(--dark);
-  color: white;
-  padding: 65px 0;
-}
-
-.cycle .section-heading h2 { color: #f3f2e7; }
-.cycle .section-heading p { color: #c6d1c7; }
-
-.cycle-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
-.cycle-card {
-  background: #ffffff0c;
-  border: 1px solid #ffffff28;
-  padding: 23px 16px;
-  border-radius: 9px;
-  text-align: center;
-}
-
-.cycle-card .symbol { font-size: 28px; }
-.cycle-card h3 { margin: 10px 0; font-size: 16px; }
-.cycle-card p { color: #cbd6ca; font: 13px Arial, sans-serif; }
-
-.conclusion {
-  background: #e9eee4;
-  text-align: center;
-}
-
-.conclusion p {
-  max-width: 790px;
-  margin: auto;
-  color: #53645a;
-  font-size: 17px;
-}
-
-.footer {
-  background: #12251d;
-  color: #dce5da;
-  padding: 30px 0;
-  text-align: center;
-  font-size: 12px;
-  letter-spacing: 1px;
-}
-
-@media(max-width: 760px) {
-  .hero-grid, .intro-grid, .eco-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero { padding: 45px 0; }
-  .nav-inner { align-items: flex-start; flex-direction: column; }
-  .nav-links { gap: 12px; }
-  section { padding: 52px 0; }
-  .web-panel { padding: 20px; }
-  .cycle-grid { grid-template-columns: repeat(2, 1fr); }
-  .flow { gap: 6px; }
-  .node { padding: 9px; font-size: 12px; }
-  .arrow { font-size: 18px; }
-}
+:root{--forest:#173d31;--leaf:#397451;--mint:#e8f1e9;--cream:#fbfaf5;--ink:#1e2a24;--muted:#637168;--gold:#d9a441;--line:#dce5dc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.65}
+a{color:#276344} .wrap{width:min(1100px,92%);margin:auto}
+.hero{background:linear-gradient(125deg,#14392e,#285c43 62%,#527b53);color:white;padding:52px 0 42px}
+.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;font-weight:800;color:#d6e8d8}
+h1{font-size:clamp(2.3rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.045em;margin:.55rem 0 1rem;max-width:850px}
+.hero p{font-size:1.1rem;color:#e2eee4;max-width:720px;margin:0}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center}
+.hero img{width:100%;border-radius:22px;border:1px solid #ffffff55;box-shadow:0 18px 50px #081b143d;object-fit:cover;max-height:390px}
+.pill{display:inline-block;border:1px solid #ffffff66;border-radius:99px;padding:5px 12px;margin-top:22px;font-size:.82rem;color:#eff7ef}
+nav{position:sticky;top:0;z-index:10;background:#fffefaee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.navinner{display:flex;gap:8px;overflow:auto;padding:10px 0;white-space:nowrap}
+nav a{text-decoration:none;color:var(--forest);font-size:.88rem;font-weight:700;padding:7px 11px;border-radius:99px}
+nav a:hover{background:var(--mint)}
+section{padding:58px 0;border-bottom:1px solid var(--line);scroll-margin-top:70px}
+.kicker{color:var(--leaf);font-size:.76rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.12;letter-spacing:-.03em;margin:.45rem 0 1rem;color:var(--forest)}
+h3{margin:.2rem 0 .45rem;color:var(--forest);font-size:1.12rem}
+.lead{font-size:1.08rem;color:#45564b;max-width:820px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.card{background:white;border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 5px 18px #173d3108}
+.card p{margin:.35rem 0 0;color:#526158;font-size:.95rem}
+.icon{font-size:1.55rem;margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+.day{background:#fff7df;border:1px solid #eedba6}.night{background:#edf0fa;border:1px solid #d7dcef}
+.day h3{color:#815a16}.night h3{color:#303c70}
+ul{padding-left:1.2rem;margin:.5rem 0;color:#45564b}li{margin:.32rem 0}
+.tablewrap{overflow-x:auto;background:white;border:1px solid var(--line);border-radius:15px;margin-top:22px}
+table{border-collapse:collapse;width:100%;min-width:650px}th,td{text-align:left;padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top}th{background:var(--mint);color:var(--forest);font-size:.88rem}td{font-size:.93rem}
+.note{background:#f1f5ed;border-left:4px solid var(--leaf);padding:15px 18px;border-radius:0 12px 12px 0;color:#435348;margin:22px 0}
+.flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:9px;margin:24px 0}
+.flow span{background:var(--mint);border:1px solid #cddfce;color:var(--forest);padding:11px 15px;border-radius:12px;font-weight:750}
+.flow b{color:var(--leaf);font-size:1.2rem}
+.qrbox{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center;background:var(--forest);color:white;border-radius:20px;padding:25px;margin-top:22px}
+.qrbox p{color:#dbe9dc;margin:.3rem 0}
+#qrcode{background:white;padding:12px;border-radius:12px;min-width:160px;min-height:160px;display:grid;place-items:center}
+#qrcode img,#qrcode canvas{max-width:100%;height:auto}
+button{border:0;background:var(--gold);color:#1e2a24;font-weight:800;padding:11px 16px;border-radius:99px;cursor:pointer;margin-top:12px}
+button:hover{filter:brightness(1.05)}
+.small{font-size:.85rem;color:var(--muted)}
+.refs li{overflow-wrap:anywhere}
+footer{background:#102d24;color:#dce9df;padding:28px 0}
+footer p{margin:.25rem 0;color:#c5d6c9;font-size:.9rem}
+@media(max-width:760px){.hero-grid,.two,.qrbox{grid-template-columns:1fr}.hero{padding:38px 0}.grid{grid-template-columns:1fr 1fr}.hero img{max-height:280px}#qrcode{width:180px}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}section{padding:42px 0}}
 </style>
 </head>
-
 <body>
-
-<nav>
- <div class="wrap nav-inner">
-  <div class="brand">HOME GARDEN | ECOLOGICAL FIELD GUIDE</div>
-  <div class="nav-links">
-   <a href="#overview">Overview</a>
-   <a href="#foodweb">Food webs</a>
-   <a href="#ecology">Ecological roles</a>
-   <a href="#cycle">Nutrient cycle</a>
-  </div>
- </div>
-</nav>
-
 <header class="hero">
  <div class="wrap hero-grid">
   <div>
-   <div class="eyebrow">A mixed home-garden agroecosystem</div>
    <h1>One Garden,<br>Two Ecological Worlds</h1>
-   <p>
-    Exploring biodiversity, feeding relationships, energy flow
-    and ecological interactions within a home-garden ecosystem
-    across daytime and nighttime environments.
-   </p>
+   <p>A closer look at the biodiversity, ecological relationships and human influences within a mixed home-garden ecosystem.</p>
    <span class="pill">A digital field guide to our home-garden model</span>
   </div>
 
-  <img
-   class="model-image"
-   src="./home-garden-model.png"
-   alt="Three-dimensional home garden model showing vegetation, house, pond and habitats">
+  <img src="./home-garden-model.png"
+       alt="Three-dimensional home garden model"
+       style="width:100%; height:auto; display:block;">
  </div>
 </header>
+<nav><div class="wrap navinner">
+ <a href="#overview">Overview</a><a href="#components">Components</a><a href="#daynight">Day & night</a><a href="#interactions">Interactions</a><a href="#processes">Ecosystem processes</a><a href="#people">Human influence</a><a href="#services">Services</a><a href="#references">References</a>
+</div></nav>
+<main>
+<section id="overview"><div class="wrap">
+ <div class="kicker">01 · Ecosystem overview</div><h2>A garden is more than a place to grow food</h2>
+ <p class="lead">A mixed home garden is a managed, multifunctional ecosystem in which trees, crops, other plants, animals, microorganisms, soil, water and people interact. In Sri Lanka, home gardens are recognised as small-scale agroforestry systems. Their structure and species composition vary with climate, available resources, land size and household practices.</p>
+ <div class="note"><strong>Central idea:</strong> The garden is a coupled human–natural system. Household management shapes habitats and resources, while ecological processes influence the garden's productivity and biodiversity.</div>
+ <p>This model uses mango, coconut and jackfruit trees, flowers, a cultivation plot, a pond, a greenhouse, a bird feeder and artificial wildlife shelters to illustrate selected features of a mixed home garden. The miniature organisms represent possible ecological roles; they are not a complete inventory of species in a real garden.</p>
+</div></section>
 
-<section id="overview">
- <div class="wrap">
-  <div class="section-heading">
-   <div class="eyebrow">01 | Ecosystem overview</div>
-   <h2>A Garden of Interconnected Life</h2>
-   <p>
-    The garden contains terrestrial and aquatic habitats,
-    cultivated plants and structures that provide resources
-    and shelter for different organisms.
-   </p>
-  </div>
-
-  <div class="intro-grid">
-   <article class="info-card">
-    <h3>Terrestrial habitat</h3>
-    <p>
-     Mango, jackfruit, coconut and banana trees, flowering plants,
-     grasses and cultivated vegetation provide food, shelter
-     and microhabitats.
-    </p>
-   </article>
-
-   <article class="info-card">
-    <h3>Aquatic habitat</h3>
-    <p>
-     The pond represents an aquatic microhabitat that can support
-     aquatic plants, algae, microorganisms and associated animals.
-    </p>
-   </article>
-
-   <article class="info-card">
-    <h3>Human influence</h3>
-    <p>
-     The house, solar panels, cultivation areas, greenhouse,
-     composting and habitat structures demonstrate the interaction
-     between people and ecological processes.
-    </p>
-   </article>
-  </div>
+<section id="components"><div class="wrap">
+ <div class="kicker">02 · Ecosystem structure</div><h2>Living and non-living components</h2>
+ <p class="lead">Ecosystem structure emerges from interactions between biotic components (living organisms) and abiotic components (physical and chemical conditions).</p>
+ <div class="grid">
+  <article class="card"><div class="icon">🌳</div><h3>Perennial plants</h3><p>Mango, coconut and jackfruit trees provide edible products and contribute to vertical structure, shade, organic matter and potential habitat.</p></article>
+  <article class="card"><div class="icon">🌼</div><h3>Flowering plants</h3><p>Flowers can provide nectar and pollen to visiting insects. Their value depends on flower traits, season and the organisms present.</p></article>
+  <article class="card"><div class="icon">🦋</div><h3>Animals</h3><p>Butterflies, birds, squirrels, bats, snails and frogs represent different feeding strategies, activity periods and ecological niches.</p></article>
+  <article class="card"><div class="icon">🪱</div><h3>Decomposers and detritivores</h3><p>Fungi, bacteria and soil invertebrates break down dead organic matter and help return nutrients to the soil. They are not individually modelled.</p></article>
+  <article class="card"><div class="icon">💧</div><h3>Water and soil</h3><p>The pond, soil and available moisture influence habitat conditions, plant growth and the organisms that can use the garden.</p></article>
+  <article class="card"><div class="icon">☀️</div><h3>Energy and climate</h3><p>Sunlight drives photosynthesis. Temperature, rainfall, humidity and air conditions influence biological activity and resource availability.</p></article>
  </div>
-</section>
+ <div class="note"><strong>Vegetation structure:</strong> The tall fruit trees, smaller plants and ground-level cultivation illustrate vertical and horizontal habitat variation. More varied structure can create a wider range of microhabitats, although actual biodiversity must be measured rather than assumed.</div>
+</div></section>
 
-<section id="foodweb">
- <div class="wrap">
-  <div class="section-heading">
-   <div class="eyebrow">02 | Trophic relationships</div>
-   <h2>Food Webs of Our Home Garden</h2>
-   <p>
-    Energy moves through interconnected feeding relationships.
-    A food web shows how several food chains are linked together
-    within an ecosystem.
-   </p>
-  </div>
-
-  <div class="legend">
-   <span>🌿 Producers</span>
-   <span>🐌 Primary consumers</span>
-   <span>🐸 Secondary consumers</span>
-   <span>🦉 Higher-level predators</span>
-  </div>
-
-  <!-- DAY FOOD WEB -->
-
-  <article class="web-panel">
-   <div class="panel-top">
-    <div class="panel-icon">☀️</div>
-    <div>
-     <h3>Daytime Food Web</h3>
-     <p>Terrestrial feeding relationships in the daytime habitat</p>
-    </div>
-   </div>
-
-   <div class="food-label">Producers</div>
-   <div class="flow">
-    <div class="node">Mango tree</div>
-    <div class="node">Jackfruit tree</div>
-    <div class="node">Coconut tree</div>
-    <div class="node">Banana plants</div>
-    <div class="node">Flowering plants</div>
-    <div class="node">Grasses</div>
-   </div>
-
-   <div class="food-label">Primary consumers</div>
-   <div class="flow">
-    <div class="node consumer">Butterflies</div>
-    <div class="node consumer">Plant-feeding insects</div>
-    <div class="node consumer">Snails</div>
-    <div class="node consumer">Squirrels</div>
-    <div class="node consumer">Fruit-eating birds</div>
-   </div>
-
-   <div class="food-label">Secondary consumers</div>
-   <div class="flow">
-    <div class="node predator">Insect-eating birds</div>
-    <div class="node predator">Frogs</div>
-    <div class="node predator">Insectivorous bats</div>
-   </div>
-
-   <div class="food-label">Higher-level predators</div>
-   <div class="flow">
-    <div class="node predator">Owls</div>
-   </div>
-
-   <div class="web-explanation">
-    <strong>Examples of energy flow:</strong>
-    <div class="flow">
-     <span class="node">Flower nectar</span>
-     <span class="arrow">→</span>
-     <span class="node consumer">Butterfly</span>
-    </div>
-    <div class="flow">
-     <span class="node">Plant leaves</span>
-     <span class="arrow">→</span>
-     <span class="node consumer">Plant-feeding insects</span>
-     <span class="arrow">→</span>
-     <span class="node predator">Insect-eating birds</span>
-    </div>
-    <div class="flow">
-     <span class="node">Fruits and seeds</span>
-     <span class="arrow">→</span>
-     <span class="node consumer">Squirrel / fruit-eating birds</span>
-    </div>
-    <p class="flow-note">
-     These are representative feeding pathways. The actual diet
-     depends on the species present.
-    </p>
-   </div>
+<section id="daynight"><div class="wrap">
+ <div class="kicker">03 · Temporal ecology</div><h2>One garden, changing activity through 24 hours</h2>
+ <p class="lead">The same garden can be used by different organisms at different times. Activity patterns are influenced by light, temperature, food availability, predation risk and species-specific behaviour.</p>
+ <div class="two">
+  <article class="card day"><div class="icon">☀️</div><h3>Daytime activity · Diurnal organisms</h3>
+   <ul><li><strong>Butterflies:</strong> may visit flowers for nectar; some species also act as pollinators.</li><li><strong>Birds:</strong> may forage, perch or use the bird feeder as a supplementary food source.</li><li><strong>Squirrels:</strong> may forage in trees and potentially move or cache seeds.</li><li><strong>Plants:</strong> photosynthesis occurs when sufficient light is available; respiration continues throughout the day.</li></ul>
   </article>
-
-  <!-- NIGHT FOOD WEB -->
-
-  <article class="web-panel">
-   <div class="panel-top">
-    <div class="panel-icon">🌙</div>
-    <div>
-     <h3>Nighttime Food Web</h3>
-     <p>Feeding interactions and ecological activity after sunset</p>
-    </div>
-   </div>
-
-   <div class="food-label">Resources and producers</div>
-   <div class="flow">
-    <div class="node">Night-side vegetation</div>
-    <div class="node">Grasses</div>
-    <div class="node">Fruits</div>
-    <div class="node">Leaf litter</div>
-   </div>
-
-   <div class="food-label">Primary consumers</div>
-   <div class="flow">
-    <div class="node consumer">Snails</div>
-    <div class="node consumer">Plant-feeding insects</div>
-    <div class="node consumer">Fruit-feeding animals</div>
-   </div>
-
-   <div class="food-label">Secondary consumers</div>
-   <div class="flow">
-    <div class="node predator">Frogs</div>
-    <div class="node predator">Insectivorous bats</div>
-   </div>
-
-   <div class="food-label">Higher-level predators</div>
-   <div class="flow">
-    <div class="node predator">Owls</div>
-   </div>
-
-   <div class="web-explanation">
-    <strong>Examples of energy flow:</strong>
-    <div class="flow">
-     <span class="node">Plant material</span>
-     <span class="arrow">→</span>
-     <span class="node consumer">Snails</span>
-    </div>
-    <div class="flow">
-     <span class="node">Nocturnal insects</span>
-     <span class="arrow">→</span>
-     <span class="node predator">Frogs</span>
-    </div>
-    <div class="flow">
-     <span class="node">Flying insects</span>
-     <span class="arrow">→</span>
-     <span class="node predator">Insectivorous bats</span>
-    </div>
-    <p class="flow-note">
-     Fireflies represent nocturnal insect activity. Their exact
-     trophic role depends on the species and life stage.
-    </p>
-   </div>
+  <article class="card night"><div class="icon">🌙</div><h3>Night-time activity · Nocturnal organisms</h3>
+   <ul><li><strong>Owls:</strong> many species are active at night and may hunt small animals, depending on species and local food availability. The model's human-made owl boxes represent potential nesting or shelter sites.</li><li><strong>Bats:</strong> many species forage at night; diets vary and may include insects, fruit or nectar. Their ecological role depends on the species present.</li><li><strong>Frogs:</strong> many tropical species call or forage at night, often near moist habitats.</li><li><strong>Snails:</strong> many become more active in humid or damp conditions, often at night.</li></ul>
   </article>
-
-  <!-- POND FOOD WEB -->
-
-  <article class="web-panel">
-   <div class="panel-top">
-    <div class="panel-icon">💧</div>
-    <div>
-     <h3>Aquatic Food Web</h3>
-     <p>The pond as a small aquatic ecosystem</p>
-    </div>
-   </div>
-
-   <div class="food-label">Producers</div>
-   <div class="flow">
-    <div class="node">Algae</div>
-    <div class="node">Aquatic plants</div>
-   </div>
-
-   <div class="food-label">Primary consumers</div>
-   <div class="flow">
-    <div class="node consumer">Zooplankton</div>
-    <div class="node consumer">Aquatic invertebrates</div>
-   </div>
-
-   <div class="food-label">Higher consumers</div>
-   <div class="flow">
-    <div class="node predator">Frogs</div>
-    <div class="node predator">Aquatic-feeding birds</div>
-    <div class="node predator">Ducks (depending on diet)</div>
-   </div>
-
-   <div class="web-explanation">
-    <strong>Example aquatic energy flow:</strong>
-    <div class="flow">
-     <span class="node">Algae</span>
-     <span class="arrow">→</span>
-     <span class="node consumer">Zooplankton</span>
-     <span class="arrow">→</span>
-     <span class="node predator">Aquatic-feeding animals</span>
-    </div>
-    <p class="flow-note">
-     The model pond illustrates a potential aquatic food web.
-     Actual organisms and links depend on the pond's biological
-     community. Ducks can feed on both plant and animal material.
-    </p>
-   </div>
-  </article>
-
-  <p class="note">
-   Important: Arrows indicate the direction of energy transfer
-   (food → consumer), not the direction in which an animal moves.
-   Food-web relationships shown are illustrative ecological
-   examples, not a claim that every organism is present in the model.
-  </p>
  </div>
+ <div class="note"><strong>Scientific note:</strong> “Diurnal” and “nocturnal” describe activity patterns, not strict rules for every species. Some organisms are crepuscular (most active around dawn or dusk), and activity varies with weather and season. Cellular respiration occurs continuously in plants and animals, including at night.</div>
+</div></section>
+
+<section id="interactions"><div class="wrap">
+ <div class="kicker">04 · Ecological relationships</div><h2>Connections between organisms</h2>
+ <p class="lead">The organisms in a garden are linked through feeding relationships, habitat use and other ecological interactions. The examples below are plausible roles represented by the model; the exact interaction depends on species identity and local conditions.</p>
+ <div class="tablewrap"><table><thead><tr><th>Organism / feature</th><th>Potential ecological role</th><th>Concept illustrated</th></tr></thead><tbody>
+ <tr><td>Butterflies and flowers</td><td>Flower visitors may transfer pollen while feeding on nectar.</td><td>Pollination; mutualistic interaction in some plant–pollinator pairs</td></tr>
+ <tr><td>Frogs and insects</td><td>Many frogs consume insects and other small invertebrates.</td><td>Predation; food-web regulation</td></tr>
+ <tr><td>Owls and small prey</td><td>Owls are predators; prey types differ among owl species.</td><td>Predator–prey relationships</td></tr>
+ <tr><td>Snails and plants / detritus</td><td>Depending on species, snails may graze on living plant material, algae or decaying matter.</td><td>Herbivory and detrital food pathways</td></tr>
+ <tr><td>Squirrels and fruit / seeds</td><td>Some squirrels consume fruits and seeds and may transport or cache seeds.</td><td>Seed movement and plant–animal interactions</td></tr>
+ <tr><td>Trees and wildlife</td><td>Branches, foliage and cavities can provide perches, shelter or nesting opportunities.</td><td>Habitat provision and niche availability</td></tr>
+ <tr><td>People and garden organisms</td><td>Planting, pruning, feeding and shelter provision alter resource availability.</td><td>Human-mediated ecological change</td></tr>
+ </tbody></table></div>
+ <div class="note"><strong>Food-web reminder:</strong> A food web is made of interconnected feeding relationships, not a single straight chain. A simplified pathway could be: flowering plants → herbivorous insects → insect-eating frogs or birds → predators. Real diets are more complex, and not every link occurs in every garden.</div>
+</div></section>
+
+<section id="processes"><div class="wrap">
+ <div class="kicker">05 · Ecosystem functioning</div><h2>Energy flow and nutrient cycling</h2>
+ <h3>Energy flow</h3><p>Sunlight is captured by photosynthetic organisms and converted into chemical energy. Energy is transferred through feeding relationships and dissipated as heat at each trophic transfer; unlike nutrients, energy is not recycled within the ecosystem.</p>
+ <div class="flow"><span>Sunlight</span><b>→</b><span>Plants</span><b>→</b><span>Herbivores</span><b>→</b><span>Predators</span></div>
+ <h3>Nutrient cycling</h3><p>Leaves, fruit, animal waste and dead organisms contribute organic matter. Decomposers and detritivores break down this material, releasing nutrients that can become available for plant uptake. Nutrients cycle between organisms, soil, water and the atmosphere.</p>
+ <div class="flow"><span>Plant litter</span><b>→</b><span>Decomposition</span><b>→</b><span>Soil nutrients</span><b>→</b><span>Plant uptake</span></div>
+ <div class="note">The model does not show every organism involved in decomposition or nutrient transformations. These processes are included to explain how the real garden functions beyond the visible miniature components.</div>
+</div></section>
+
+<section id="people"><div class="wrap">
+ <div class="kicker">06 · Human influence</div><h2>Human-made structures can modify habitat</h2>
+ <div class="grid">
+  <article class="card"><div class="icon">🐦</div><h3>Bird feeder</h3><p>Provides supplementary food. Feeder placement, hygiene and food type can influence which birds visit and may affect disease transmission or species interactions.</p></article>
+  <article class="card"><div class="icon">🦉</div><h3>Human-made owl box</h3><p>Represents an artificial nesting or shelter structure. Whether owls use it depends on the species, box design, placement and surrounding habitat.</p></article>
+  <article class="card"><div class="icon">🌱</div><h3>Greenhouse</h3><p>Creates a managed growing environment in which temperature, humidity, light and ventilation can be modified.</p></article>
+  <article class="card"><div class="icon">🥬</div><h3>Cultivation plot</h3><p>Shows managed food production and human influence on plant composition, soil conditions, water use and nutrient inputs.</p></article>
+  <article class="card"><div class="icon">🏡</div><h3>Household management</h3><p>Plant selection, pruning, watering, composting and waste management influence ecosystem structure and function.</p></article>
+  <article class="card"><div class="icon">🐕</div><h3>Domestic dog</h3><p>Represents a domestic animal within the human-managed landscape. Dogs can influence wildlife through disturbance, chasing and other interactions.</p></article>
+ </div>
+ <div class="note"><strong>Critical perspective:</strong> Human interventions can create resources and habitats, but they can also cause disturbance. A feeder or artificial roost does not automatically improve biodiversity; outcomes depend on responsible design, maintenance and ecological context.</div>
+</div></section>
+
+<section id="services"><div class="wrap">
+ <div class="kicker">07 · Benefits and sustainability</div><h2>Ecosystem services of a mixed home garden</h2>
+ <div class="grid">
+  <article class="card"><div class="icon">🥭</div><h3>Provisioning services</h3><p>Fruits, vegetables and other useful plant products that support household needs.</p></article>
+  <article class="card"><div class="icon">🌦️</div><h3>Regulating services</h3><p>Potential contributions to local shade and microclimate regulation, carbon storage, pollination and biological control.</p></article>
+  <article class="card"><div class="icon">♻️</div><h3>Supporting processes</h3><p>Primary production, soil formation, decomposition, nutrient cycling and habitat provision underpin other ecosystem services.</p></article>
+  <article class="card"><div class="icon">🌿</div><h3>Cultural services</h3><p>Recreation, aesthetic value, place-based knowledge and opportunities for environmental learning.</p></article>
+ </div>
+ <h3 style="margin-top:28px">Practices that can support sustainability</h3>
+ <ul><li>Maintain a diversity of suitable plants, including locally appropriate native species.</li><li>Protect soil with organic matter, ground cover and careful cultivation.</li><li>Collect and use rainwater where practical and safe.</li><li>Compost suitable organic garden waste.</li><li>Reduce unnecessary pesticide use and protect pollinator resources.</li><li>Maintain owl boxes and other wildlife structures responsibly, and monitor whether they are actually used.</li></ul>
+</div></section>
+
+<section id="references"><div class="wrap">
+ <div class="kicker">08 · Further reading</div><h2>Scientific references</h2>
+ <p class="lead">These publications provide research context for Sri Lankan home gardens, agroforestry, biodiversity and ecosystem services.</p>
+ <ol class="refs">
+  <li>Ruwanmalie, W.A.P.U. &amp; Ranwala, S.M.W. (2025). <em>A Glimpse into the Multiplicity of Traditional Home Garden Agroforestry Systems in the Wet Lowlands of Sri Lanka: A Qualitative Study.</em> Proceedings of the 29th Forestry and Environment Symposium. <a href="https://doi.org/10.31357/fesympo.v29.8057" target="_blank" rel="noopener">https://doi.org/10.31357/fesympo.v29.8057</a></li>
+  <li>Jeyavanan, K., Sivachandiran, S. &amp; Pushpakumara, D.K.N.G. (2017). <em>Ecosystem Services of Homegarden Agroforestry in Jaffna Peninsula.</em> Journal of Dry Zone Agriculture, 3, 56–68. <a href="https://www.jdza.jfn.ac.lk/wp-content/uploads/2018/11/V3_56-68.pdf" target="_blank" rel="noopener">Read article (PDF)</a></li>
+  <li>Mohri, H. et al. (2013). Assessment of ecosystem services in homegarden systems in Indonesia, Sri Lanka, and Vietnam. <em>Ecosystem Services, 5</em>, 124–136. <a href="https://doi.org/10.1016/j.ecoser.2013.07.006" target="_blank" rel="noopener">https://doi.org/10.1016/j.ecoser.2013.07.006</a></li>
+  <li>Lowe, A. et al. (2024). Does human intervention modulate the above-ground carbon biomass of agroforestry systems? A study of homegardens in Jaffna peninsula, Sri Lanka. <em>Agricultural Systems.</em> <a href="https://doi.org/10.1016/j.agsy.2023.103842" target="_blank" rel="noopener">https://doi.org/10.1016/j.agsy.2023.103842</a></li>
+  <li>National Science Foundation of Sri Lanka. <em>Comparative Analysis of Climate-Resilient Biodiversity of Home Garden ecosystems in Different Agro-ecological Regions of Sri Lanka.</em> <a href="https://buddhi.nsf.gov.lk/ikasthuri/" target="_blank" rel="noopener">Research project overview</a></li>
+ </ol>
 </section>
 
-<section id="ecology">
- <div class="wrap">
-  <div class="section-heading">
-   <div class="eyebrow">03 | Ecological functions</div>
-   <h2>More Than Feeding Relationships</h2>
-   <p>
-    Organisms interact through pollination, seed dispersal,
-    predation, decomposition and habitat use.
-   </p>
-  </div>
-
-  <div class="eco-grid">
-   <article class="eco-card">
-    <h3>🌸 Pollination</h3>
-    <ul>
-     <li>Butterflies and other flower visitors can transfer pollen.</li>
-     <li>Flowering plants provide nectar and pollen resources.</li>
-     <li>Pollination supports plant reproduction.</li>
-    </ul>
-   </article>
-
-   <article class="eco-card">
-    <h3>🌳 Seed dispersal</h3>
-    <ul>
-     <li>Fruit-eating birds and squirrels may disperse seeds.</li>
-     <li>Fruits provide food for wildlife.</li>
-     <li>Seed dispersal can support natural plant regeneration.</li>
-    </ul>
-   </article>
-
-   <article class="eco-card">
-    <h3>🦉 Habitat and shelter</h3>
-    <ul>
-     <li>Tree canopies provide nesting and resting sites.</li>
-     <li>Owl boxes represent artificial nesting opportunities.</li>
-     <li>Hanging structures can provide potential bat roosting sites.</li>
-    </ul>
-   </article>
-
-   <article class="eco-card">
-    <h3>🐸 Natural pest regulation</h3>
-    <ul>
-     <li>Frogs consume a variety of small invertebrates.</li>
-     <li>Insectivorous birds and bats consume insects.</li>
-     <li>Predation can contribute to ecological population regulation.</li>
-    </ul>
-   </article>
-  </div>
+<section id="qr"><div class="wrap">
+ <div class="kicker">Share our model</div><h2>Scan to explore the garden</h2>
+ <div class="qrbox">
+  <div><h3 style="color:white;font-size:1.35rem"> QR code</h3><p id="qrstatus">The QR code will appear here after the webpage is hosted on a public URL.</p><button id="downloadQr" type="button" disabled>Download QR code</button></div>
+  <div id="qrcode" aria-label="QR code for this exhibition"><span style="color:#526158;text-align:center;font-size:.8rem">Publish the site<br>to generate QR</span></div>
  </div>
-</section>
-
-<section class="cycle" id="cycle">
- <div class="wrap">
-  <div class="section-heading">
-   <div class="eyebrow">04 | Ecosystem processes</div>
-   <h2>Decomposition and Nutrient Cycling</h2>
-   <p>
-    Dead organic matter is broken down and nutrients are returned
-    to the environment, supporting further plant growth.
-   </p>
-  </div>
-
-  <div class="cycle-grid">
-   <article class="cycle-card">
-    <div class="symbol">🍂</div>
-    <h3>Organic matter</h3>
-    <p>Fallen leaves, dead plant material and other organic remains.</p>
-   </article>
-
-   <article class="cycle-card">
-    <div class="symbol">🍄</div>
-    <h3>Decomposers</h3>
-    <p>Fungi and bacteria break down organic matter.</p>
-   </article>
-
-   <article class="cycle-card">
-    <div class="symbol">🪱</div>
-    <h3>Detritivores</h3>
-    <p>Earthworms and other detritivores fragment organic material.</p>
-   </article>
-
-   <article class="cycle-card">
-    <div class="symbol">🌱</div>
-    <h3>Nutrient return</h3>
-    <p>Released nutrients become available for plant uptake.</p>
-   </article>
-  </div>
- </div>
-</section>
-
-<section class="conclusion">
- <div class="wrap">
-  <div class="eyebrow">05 | Our ecological perspective</div>
-  <div class="section-heading">
-   <h2>One Garden, Many Connections</h2>
-  </div>
-  <p>
-   A home garden is more than a collection of cultivated plants.
-   It is a dynamic agroecosystem in which organisms interact
-   with one another and with their physical environment.
-   The coexistence of terrestrial and aquatic habitats,
-   daytime and nighttime activity, and human-managed spaces
-   demonstrates how biodiversity and ecological processes
-   contribute to the functioning of a small ecosystem.
-  </p>
- </div>
-</section>
-
-<footer class="footer">
- <div class="wrap">
-  ONE GARDEN, TWO ECOLOGICAL WORLDS
-  <p style="margin-top:10px;color:#aab9ab;">
-   Biodiversity · Food Webs · Ecological Relationships · Sustainability
-  </p>
- </div>
-</footer>
-
+ <p class="small" style="color:#d5e0d7" id="pageurl"></p>
+</div></section>
+</main>
+<footer><div class="wrap">
+ <strong>One Garden, Two Ecological Worlds</strong>
+ <p>A university ecology exhibition resource · Sri Lankan mixed home-garden model</p>
+ <p>Prepared for educational purposes. </p>
+</div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+ const status=document.getElementById('qrstatus'), box=document.getElementById('qrcode'), btn=document.getElementById('downloadQr'), urlLabel=document.getElementById('pageurl');
+ const url=window.location.href;
+ const isHosted=location.protocol==='https:' || location.protocol==='http:';
+ if(isHosted && window.QRCode){
+   box.innerHTML='';
+   new QRCode(box,{text:url,width:220,height:220,colorDark:'#173d31',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
+   status.textContent='Scan this code to open the live exhibition webpage.';
+   urlLabel.textContent=url;
+   btn.disabled=false;
+   btn.addEventListener('click',function(){
+     const canvas=box.querySelector('canvas');
+     const img=box.querySelector('img');
+     let data=canvas?canvas.toDataURL('image/png'):(img?img.src:null);
+     if(!data)return;
+     const a=document.createElement('a');a.href=data;a.download='home-garden-exhibition-QR.png';a.click();
+   });
+ } else {
+   status.textContent='This is a local preview. Publish the folder to a free web host; the QR code will then generate automatically using the public URL.';
+ }
+})();
+</script>
 </body>
 </html>
